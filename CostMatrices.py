@@ -44,19 +44,19 @@ def TupleMatrixCost(m1, m2):
     costM = np.sqrt(costM)
     return costM
 
-def AssignMatrix(m1, m2):
+def AssignMatrix(row_pixels, cost_matrix):
     '''
-    Returns a python list of values in m2 arranged to reduce distance between 
-    them and the arrangement of m1
+    Creates a new array with the same data as row_pixels, designed to 
+    optimize the cost_matrix
     '''
-    cost = TupleMatrixCost(m1, m2)
 
     #use the hungarian algorithm for an ideal matching O(n^3) 
-    rowind, colind = linear_sum_assignment(cost)
+    rowind, colind = linear_sum_assignment(cost_matrix)
 
+    size = len(row_pixels)
     #create a python list with m2 arranged akin to m1
-    sortedArray = [0] * len(m1)
-    for i in range(len(m1)):
-        sortedArray[colind[i]] = m1[i]
+    sortedArray = [0] * size
+    for i in range(size):
+        sortedArray[colind[i]] = row_pixels[i]
     
     return sortedArray

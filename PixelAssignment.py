@@ -4,6 +4,7 @@ import time
 st = time.time()
 from PIL import Image, ImageCms
 from CostMatrices import *
+from PixelVerification import *
 
 #create LAB transform (better for sorting than RGB)
 srgb_p = ImageCms.createProfile('sRGB')
@@ -33,17 +34,27 @@ def HungarianAssignment(im1: Image.Image, im2: Image.Image):
 
     retIm = Image.new('RGB', im1.size)
 
+    #data in RGB (for placing pixels) and LAB (for finding assignment)
     im1data = list(im1.getdata())
-    im2data = list(im2.getdata())
 
-    #arrange and insert data
-    sortedData = AssignMatrix(im1data, im2data)
-    retIm.putdata(sortedData)
+    im1data_lab = list(ImageCms.applyTransform(im1, rgb2lab).getdata())
+    im2data_lab = list(ImageCms.applyTransform(im2, rgb2lab).getdata())
+    #note this does affect these images in a way that can't be properly 
+    #reversed. Best not to reuse the images after this function is called
 
+    #generate cost matrix
+    cost_matrix = TupleMatrixCost(im1data_lab, im2data_lab)
+
+    #arrange data, insert into image
+    sorted_data = AssignMatrix(im1data, cost_matrix)
+    retIm.putdata(sorted_data)
+    
+    #print(CheckSame(im1, retIm))
     return retIm
+    
+if __name__ == "__main__":
+    flowers = Image.open("./images/flowers75.bmp")
+    flowers_random = HungarianAssignment(MakeRandom(75, 75), flowers)
 
-
-spiral50 = Image.open("./images/spiral50.bmp")
-random50 = Image.open("./images/50random50.bmp")
-
-HungarianAssignment(random50, spiral50).save("./generated_images/random_spiral.bmp")
+    flowers_random.save("./generated_images/flowers_random.bmp")
+    print(time.time() - st)
