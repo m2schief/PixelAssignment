@@ -303,5 +303,3 @@ def dataDistance(data1, data2, size):
             totalDiff += (data1[i][j] - data2[i][j])**2
     return totalDiff**(1/2)
 
-
-#Functions for assignment using 3Arrays:
