@@ -23,7 +23,7 @@ def MatrixCost(m1: np.matrix, m2: np.matrix):
 
     return cost
 
-def TupleMatrixCost(m1: np.matrix, m2: np.matrix):
+def TupleMatrixCost(m1, m2):
     '''
     Returns a square-difference cost matrix given two matrices of equal size 
     with only one row of tuples of ints
@@ -44,7 +44,7 @@ def TupleMatrixCost(m1: np.matrix, m2: np.matrix):
     costM = np.sqrt(costM)
     return costM
 
-def AssignMatrix(m1: np.matrix, m2: np.matrix):
+def AssignMatrix(m1, m2):
     '''
     Returns a python list of values in m2 arranged to reduce distance between 
     them and the arrangement of m1
