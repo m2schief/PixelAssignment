@@ -54,7 +54,7 @@ def AssignMatrix(row_pixels, cost_matrix):
     rowind, colind = linear_sum_assignment(cost_matrix)
 
     size = len(row_pixels)
-    #create a python list with m2 arranged akin to m1
+    #create a python list with row_pixels arranged according to cost_matrix
     sortedArray = [0] * size
     for i in range(size):
         sortedArray[colind[i]] = row_pixels[i]
