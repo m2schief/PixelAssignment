@@ -33,30 +33,17 @@ def HungarianAssignment(im1: Image.Image, im2: Image.Image):
 
     retIm = Image.new('RGB', im1.size)
 
-    #Image Data in LAB
-    im1data_lab = list(ImageCms.applyTransform(im1, rgb2lab).getdata())
-    im2data_lab = list(ImageCms.applyTransform(im2, rgb2lab).getdata())
-    #list of tuples for tuplematrixcost
+    im1data = list(im1.getdata())
+    im2data = list(im2.getdata())
 
     #arrange and insert data
-    sortedData = AssignMatrix(im1data_lab, im2data_lab)
+    sortedData = AssignMatrix(im1data, im2data)
     retIm.putdata(sortedData)
-
-    #change values back to RGB
-    retIm.putdata(list(ImageCms.applyTransform(retIm, lab2rgb).getdata()))
 
     return retIm
 
-'''
-spiral50 = Image.open("./images/spiral50.jpg")
+
+spiral50 = Image.open("./images/spiral50.bmp")
 random50 = Image.open("./images/50random50.bmp")
 
-HungarianAssignment(random50, spiral50).save("./generated_images/spiral_random_hungarian.bmp")
-
-
-flowers75 = Image.open("./images/flowers75.bmp")
-random75 = MakeRandom(75, 75)
-
-HungarianAssignment(random75, flowers75).save("./generated_images/flowers_random_hungarian.bmp")
-print(time.time() - st)
-'''
+HungarianAssignment(random50, spiral50).save("./generated_images/random_spiral.bmp")

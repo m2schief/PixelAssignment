@@ -25,8 +25,8 @@ def MatrixCost(m1: np.matrix, m2: np.matrix):
 
 def TupleMatrixCost(m1, m2):
     '''
-    Returns a square-difference cost matrix given two matrices of equal size 
-    with only one row of tuples of ints
+    Returns a square-difference cost matrix given two lists of equal size 
+    of tuples of ints
 
     m1 values are the rows, m2 values are the columns
     '''
