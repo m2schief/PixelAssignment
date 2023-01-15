@@ -47,7 +47,16 @@ def HungarianAssignment(im1: Image.Image, im2: Image.Image):
 
     return retIm
 
+'''
 spiral50 = Image.open("./images/spiral50.jpg")
 random50 = Image.open("./images/50random50.bmp")
 
 HungarianAssignment(random50, spiral50).save("./generated_images/spiral_random_hungarian.bmp")
+
+
+flowers75 = Image.open("./images/flowers75.bmp")
+random75 = MakeRandom(75, 75)
+
+HungarianAssignment(random75, flowers75).save("./generated_images/flowers_random_hungarian.bmp")
+print(time.time() - st)
+'''
