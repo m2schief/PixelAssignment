@@ -27,8 +27,8 @@ use the Hungarian algorithm, and
 map the pixels to their new locations. This approach will make the resultant 
 image 'perfect', as far as reducing LAB distance goes.
 
-We start with our ideal outcome image:
-![flowers75](./images/flowers75.bmp)<br>
+We start with our ideal outcome image:<br>
+![flowers75](./images_readme/flowers_fixed.jpg)<br>
 Then convert random pixels to resemble it:
 
 ![Randomly Generated Pixels](./images/random75.bmp)
@@ -75,7 +75,7 @@ To help understand what's going on, here's an array before and after being sorte
 
 Using the same two images:
 
-![flowers75](./images/flowers75.bmp)
+![flowers75](./images_readme/flowers_fixed.jpg)
 ![random75](./images/random75.bmp)
 
 and giving us
