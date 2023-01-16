@@ -15,11 +15,12 @@ def MatrixCost(m1: np.matrix, m2: np.matrix):
     arrSize = m1.shape[1]
 
     #Create nxn matrices; one with repeated rows, other with repeated columns
-    m1_row = np.transpose(m1) * np.ones((1, arrSize), dtype=int)
-    m2_col = np.ones((arrSize, 1), dtype=int) * m2
+    m1_row = np.transpose(m1) * np.ones((1, arrSize), dtype=float)
+    m2_col = np.ones((arrSize, 1), dtype=float) * m2
 
     #subtract and square for a square-diff cost matrix
-    cost = np.square(m1_row - m2_col)
+    cost = m1_row - m2_col
+    cost = np.square(cost)
 
     return cost
 
@@ -36,9 +37,10 @@ def TupleMatrixCost(m1, m2):
     rArray_2, gArray_2, bArray_2 = zip(*m2)
 
     #add costs between the values together for total cost
-    costM = MatrixCost(np.matrix(rArray_1), np.matrix(rArray_2)) 
-    + MatrixCost(np.matrix(gArray_1), np.matrix(gArray_2)) 
-    + MatrixCost(np.matrix(bArray_1), np.matrix(bArray_2))
+    m1Cost = MatrixCost(np.matrix(rArray_1), np.matrix(rArray_2)) 
+    m2Cost = MatrixCost(np.matrix(gArray_1), np.matrix(gArray_2)) 
+    m3Cost = MatrixCost(np.matrix(bArray_1), np.matrix(bArray_2))
+    costM = m1Cost + m2Cost + m3Cost
 
     #square root to represent cost as pixel distance
     costM = np.sqrt(costM)
@@ -52,6 +54,7 @@ def AssignMatrix(row_pixels, cost_matrix):
 
     #use the hungarian algorithm for an ideal matching O(n^3) 
     rowind, colind = linear_sum_assignment(cost_matrix)
+    #print(cost_matrix[rowind, colind].sum())
 
     size = len(row_pixels)
     #create a python list with row_pixels arranged according to cost_matrix
