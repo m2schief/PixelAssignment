@@ -40,8 +40,6 @@ def HungarianAssignment(im1: Image.Image, im2: Image.Image):
 
     im1data_lab = list(ImageCms.applyTransform(im1, rgb2lab).getdata())
     im2data_lab = list(ImageCms.applyTransform(im2, rgb2lab).getdata())
-    #note this does affect these images in a way that can't be properly 
-    #reversed. Best not to reuse the images after this function is called
 
     #generate cost matrix
     cost_matrix = TupleMatrixCost(im1data_lab, im2data_lab)
@@ -50,7 +48,7 @@ def HungarianAssignment(im1: Image.Image, im2: Image.Image):
     sorted_data = AssignMatrix(im1data, cost_matrix)
     retIm.putdata(sorted_data)
     
-    #print(CheckSame(im1, retIm))
+    print(CheckSame(im1, retIm))
     return retIm
 
 
@@ -93,15 +91,19 @@ def ArraySortAssignment(im1: Image.Image, im2: Image.Image):
     
     retIm.putdata(sortedArray)
 
-    #print(CheckSame(im1, retIm))
+    print(CheckSame(im1, retIm))
     return retIm
 
 
 
 
 if __name__ == "__main__":
-    flowers = Image.open("./images/flowers75.bmp")
-    flowers_random = ArraySortAssignment(MakeRandom(75, 75), flowers)
+    
+    random75 = Image.open("./images/random75.bmp")
+    flowers75 = Image.open("./images/flowers75.bmp")
 
-    flowers_random.save("./generated_images/sorted_flowers_random.bmp")
-    print(time.time() - st)
+    flowers_hungarian = HungarianAssignment(random75, flowers75)
+    flowers_sorted = ArraySortAssignment(random75, flowers75)
+
+    flowers_sorted.save("./generated_images/random_flowers_arraySort.bmp")
+    flowers_hungarian.save("./generated_images/random_flowers_hungarian.bmp")
