@@ -281,3 +281,13 @@ def prime_factors(n):
     if n > 1:
         factors.append(n)
     return factors
+
+if __name__ == "__main__":
+    import random
+
+    testArray = [(random.randrange(256), random.randrange(256), random.randrange(256)) for i in range(12)]
+    testThree = ThreeArray(testArray, 12, 1, 1)
+    testThree.cuboidDimensions()
+    print(testThree)
+    testThree.sorted()
+    print(testThree)

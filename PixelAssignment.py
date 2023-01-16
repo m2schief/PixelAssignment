@@ -99,17 +99,24 @@ def ArraySortAssignment(im1: Image.Image, im2: Image.Image):
 
 if __name__ == "__main__":
     
+    #can simply change 'myImage' path to whatever image
+    myImage = Image.open("./images/spiral50.bmp")
+    ArraySortAssignment(MakeRandom(myImage.size[0], myImage.size[1]), myImage).save("./generated_images/myim_random.bmp")
+    #HungarianAssignment(MakeRandom(myImage.size[0], myImage.size[1]), myImage).save("./generated_images/myim_random_hungarian.bmp")
+    #Hungarian slow
+
     '''
     random75 = Image.open("./images/random75.bmp")
     flowers75 = Image.open("./images/flowers75.bmp")
 
     flowers_hungarian = HungarianAssignment(random75, flowers75)
-    flowers_sorted = ArraySortAssignment(random75, flowers75)
+    #flowers_sorted = ArraySortAssignment(random75, flowers75)
 
-    flowers_sorted.save("./generated_images/random_flowers_arraySort.bmp")
+    #flowers_sorted.save("./generated_images/random_flowers_arraySort.bmp")
     flowers_hungarian.save("./generated_images/random_flowers_hungarian.bmp")
+    print(time.time() - st)# 50.75s
     
-
+    
     random150 = Image.open("./images/random150.bmp")
     lorikeet150 = Image.open("./images/lorikeet150.jpg")
     lorikeet_from_random = HungarianAssignment(random150, lorikeet150)
@@ -121,4 +128,10 @@ if __name__ == "__main__":
     lorikeet150 = Image.open("./images/lorikeet150.jpg")
     ArraySortAssignment(random150, lorikeet150).save("./generated_images/lorikeet_arraysort_150.bmp")
     print(time.time() - st) #4.25s
+    
+
+    lorikeet1000 = Image.open("./images/lorikeet1000.jpg")
+    flowers1000 = Image.open("./images/flowers1000.jpg")
+    ArraySortAssignment(lorikeet1000, flowers1000).save("./generated_images/flowers_from_lorikeet.bmp")
+    print(time.time() - st) # 5.85s
     '''
