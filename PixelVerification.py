@@ -33,6 +33,7 @@ def AverageDistanceLab(im1, im2):
 
 
 if __name__ == "__main__":
+    '''
     flowers_sorted = Image.open("./generated_images/random_flowers_arraySort.bmp")
     flowers_hungarian = Image.open("./generated_images/random_flowers_hungarian.bmp")
     random75 = Image.open("./images/random75.bmp")
@@ -44,3 +45,17 @@ if __name__ == "__main__":
     print(AverageDistanceLab(flowers75, random75)) #94.55
     print(AverageDistanceLab(flowers75, flowers_hungarian)) #38.73
     print(AverageDistanceLab(flowers75, flowers_sorted)) #50.54
+    
+
+    lorikeet = Image.open("./images/lorikeet150.jpg")
+    lorikeet_sorted = Image.open("./generated_images/lorikeet_arraysort_150.bmp")
+    lorikeet_hungarian = Image.open("./generated_images/lorikeet_hungarian_150.bmp")
+    random150 = Image.open("./images/random150.bmp")
+
+    print(CheckSame(lorikeet_sorted, lorikeet_hungarian)) #True
+    print(CheckSame(lorikeet_hungarian, random150)) #True
+    
+    print(AverageDistanceLab(lorikeet, random150)) #99.82
+    print(AverageDistanceLab(lorikeet, lorikeet_hungarian)) #72.2
+    print(AverageDistanceLab(lorikeet, lorikeet_sorted)) #79.83
+    '''

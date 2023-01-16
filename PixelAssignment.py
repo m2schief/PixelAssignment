@@ -99,6 +99,7 @@ def ArraySortAssignment(im1: Image.Image, im2: Image.Image):
 
 if __name__ == "__main__":
     
+    '''
     random75 = Image.open("./images/random75.bmp")
     flowers75 = Image.open("./images/flowers75.bmp")
 
@@ -107,3 +108,17 @@ if __name__ == "__main__":
 
     flowers_sorted.save("./generated_images/random_flowers_arraySort.bmp")
     flowers_hungarian.save("./generated_images/random_flowers_hungarian.bmp")
+    
+
+    random150 = Image.open("./images/random150.bmp")
+    lorikeet150 = Image.open("./images/lorikeet150.jpg")
+    lorikeet_from_random = HungarianAssignment(random150, lorikeet150)
+    lorikeet_from_random.save("./generated_images/lorikeet_hungarian_150.bmp")
+    print(time.time() - st) #100m
+    
+
+    random150 = Image.open("./images/random150.bmp")
+    lorikeet150 = Image.open("./images/lorikeet150.jpg")
+    ArraySortAssignment(random150, lorikeet150).save("./generated_images/lorikeet_arraysort_150.bmp")
+    print(time.time() - st) #4.25s
+    '''
