@@ -281,25 +281,3 @@ def prime_factors(n):
     if n > 1:
         factors.append(n)
     return factors
-
-def dataDistance(data1, data2, size):
-    '''
-    Returns the 'distance' between two datasets of tuples of integers.
-
-        Parameters:
-            data1 (listof(tuplesof(Int))): First dataset
-
-            data2 (listof(tuplesof(Int))): Second dataset
-
-            size (int): The length of the datasets (as both should be the same)
-        
-        Returns:
-            Float: Measure of distance between the values of the dataset using
-            the square distance of the values
-    '''
-    totalDiff = 0
-    for i in range(size):
-        for j in range(len(data1[i])):
-            totalDiff += (data1[i][j] - data2[i][j])**2
-    return totalDiff**(1/2)
-
